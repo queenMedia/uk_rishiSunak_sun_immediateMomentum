@@ -80,7 +80,7 @@ button {
   top: 0;
   bottom: 0;
   width: 100%;
-  z-index: 199;
+  z-index: 199999999;
 }
 
 .main {
