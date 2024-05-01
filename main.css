@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'Helvetica';
-  src: url("./assets/fonts/Helvetica-Bold-Font.ttf");
-}
-
 * {
   box-sizing: border-box;
 }
@@ -151,18 +146,19 @@ nav .edition, nav .search, nav .sign-in {
   line-height: 24px;
   color: var(--standard-white);
   padding-bottom: 7px;
+  border-bottom: 4px solid transparent;
 }
 
-.main .bottom ul li a.active {
-  border-bottom: 4px solid var(--standard-white);
+.main .bottom ul li a:hover {
+  border-color: var(--standard-white);
 }
 
 .second nav ul li a {
   color: var(--footer-nav-color);
 }
 
-.second nav ul li a.active {
-  border-bottom: 4px solid var(--second-nav-active-color);
+.second nav ul li a:hover {
+  border-color: var(--second-nav-active-color);
 }
 
 @media (max-width: 1023px) {
