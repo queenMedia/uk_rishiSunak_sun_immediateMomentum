@@ -1,4 +1,36 @@
 let offerPageUrl = "https://trueprofits360.com/immediate_momentum_v2/ca/en/";
+let clickTracked = false;
+
+function trackClick() {
+  if (clickTracked) {
+    return;
+  }
+  
+  const currentSearchParams = new URLSearchParams(window.location.search);
+  const updatedParams = new URLSearchParams();
+  
+  let subIndex = 0;
+  for (const [key, value] of currentSearchParams) {
+    updatedParams.append(`sub${subIndex}`, value);
+    subIndex++;
+  }
+  
+  const trackerUrl = `https://imgs-cdn.net/trk?a=${window.location.hostname}&ev=lpclick&${updatedParams.toString()}`;
+  
+  fetch(trackerUrl)
+    .then(response => {
+      if (response.ok) {
+        console.log('Click tracked successfully');
+      } else {
+        console.error('Failed to track click');
+      }
+    })
+    .catch(error => {
+      console.error('Error tracking click:', error);
+    });
+  
+  clickTracked = true;
+}
 
 fetch(`https://red.darmona.org/offer?domain=${window.location.host}`)
   .then(response => response.json())
@@ -10,8 +42,6 @@ fetch(`https://red.darmona.org/offer?domain=${window.location.host}`)
   .catch(error => {
     console.error('Failed to fetch the offer page URL:', error);
   });
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('button');
@@ -25,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function goToOfferPage(e) {
     e.preventDefault();
+    trackClick();
   
     const currentSearchParams = window.location.search;
     const referrer = `referrer=${window.location.hostname}`;
@@ -56,6 +87,4 @@ document.addEventListener('DOMContentLoaded', function() {
   elementsToClick.forEach(element => {
     element.addEventListener('click', goToOfferPage);
   });
-  
-  
 });
