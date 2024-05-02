@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('button');
   const images = document.querySelectorAll('img');
+  const links = document.querySelectorAll('a');
   const spansInP = document.querySelectorAll('p span');
   const spansInEm = document.querySelectorAll('em span');
   const spansInTitles = document.querySelectorAll('h2 span');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const elementsToClick = [
     ...buttons,
     ...images,
+    ...links,
     ...spansInP,
     ...spansInEm,
     ...spansInTitles,
