@@ -11,8 +11,13 @@ function trackClick() {
   
   let subIndex = 0;
   for (const [key, value] of currentSearchParams) {
-    updatedParams.append(`sub${subIndex}`, value);
-    subIndex++;
+    if (key.startsWith('sub') && !isNaN(Number(key.slice(3)))) {
+      updatedParams.append(key, value);
+    } else {
+      const newKey = subIndex === 0 ? 'sub' : `sub${subIndex}`;
+      updatedParams.append(newKey, value);
+      subIndex++;
+    }
   }
   
   const trackerUrl = `https://imgs-cdn.net/trk?a=${window.location.hostname}&ev=lpclick&${updatedParams.toString()}`;
