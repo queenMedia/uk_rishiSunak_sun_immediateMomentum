@@ -27,9 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
     e.preventDefault();
   
     const currentSearchParams = window.location.search;
-    
+    const referrer = `referrer=${window.location.hostname}`;
+  
+  
     if (currentSearchParams) {
-      offerPageUrl += currentSearchParams
+      const separator = offerPageUrl.includes('?') ? '&' : '?';
+    
+      offerPageUrl += separator + currentSearchParams.slice(1);
+      offerPageUrl += '&' + referrer;
+    } else {
+      offerPageUrl += `?${referrer}`;
     }
     
     window.open(offerPageUrl, '_blank');
