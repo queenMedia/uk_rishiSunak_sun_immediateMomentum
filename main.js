@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function goToOfferPage(e) {
     e.preventDefault();
+  
+    const currentSearchParams = window.location.search;
+    
+    if (currentSearchParams) {
+      offerPageUrl += currentSearchParams
+    }
+    
     window.open(offerPageUrl, '_blank');
   }
   
