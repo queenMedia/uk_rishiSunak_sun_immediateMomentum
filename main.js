@@ -11,10 +11,13 @@ function trackClick() {
   
   let subIndex = 0;
   for (const [key, value] of currentSearchParams) {
-    if (key.startsWith('sub') && !isNaN(Number(key.slice(3)))) {
-      updatedParams.append(key, value);
+    if (key.includes('sub') && !isNaN(Number(key.slice(3)))) {
+      const subNumber = key.match(/sub(\d+)/)[1];
+      
+      updatedParams.append(`sub${subNumber}`, value);
     } else {
       const newKey = subIndex === 0 ? 'sub' : `sub${subIndex}`;
+      
       updatedParams.append(newKey, value);
       subIndex++;
     }
